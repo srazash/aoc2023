@@ -16,24 +16,30 @@ func main() {
 	}
 	defer input.Close()
 
-	nums := regexp.MustCompile("[0-9]+")
+	//nums := regexp.MustCompile("[0-9]+")
+	nums := regexp.MustCompile("zero|one|two|three|four|five|six|seven|eight|nine|[0-9]+")
 	answer := 0
 	count := 0
 
 	scanner := bufio.NewScanner(input)
 	for scanner.Scan() {
 		count++
-		lineNums := make([]rune, 0)
+		lineNums := make([]string, 0)
 		in := scanner.Text()
 		for _, c := range in {
 			if nums.MatchString(strconv.QuoteRune(c)) {
 				lineNums = append(lineNums, c)
 			}
 		}
-		lineInt, _ := strconv.Atoi(fmt.Sprintf("%s%s", string(lineNums[0]), string(lineNums[len(lineNums)-1])))
-		answer += lineInt
-		fmt.Printf("(%d) Line value: %d, Total so far: %d\n", count, lineInt, answer)
+		//lineInt, _ := strconv.Atoi(fmt.Sprintf("%s%s", string(lineNums[0]), string(lineNums[len(lineNums)-1])))
+		//answer += lineInt
+		//fmt.Printf("(%d) Line value: %d, Total so far: %d\n", count, lineInt, answer)
+		fmt.Println(lineNums)
 	}
 
-	fmt.Printf("Answer is: %d\n", answer)
+	fmt.Printf("Pt. 1 answer is: %d\n", answer)
+}
+
+func partTwo(in []rune) int {
+	return 0
 }
